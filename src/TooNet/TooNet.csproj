@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>TooNet</AssemblyName>
     <RootNamespace>TooNet</RootNamespace>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
     <!-- NuGet Package Metadata -->
