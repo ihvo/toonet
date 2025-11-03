@@ -16,6 +16,10 @@ public partial struct TooNetWriter
     private bool _needsIndent;
     private bool _isFirstProperty;
     private bool _inObject;
+    private bool _inArray;
+    private int _arrayItemCount;
+    private int _arrayItemsWritten;
+    private ArrayFormatMode _currentArrayFormat;
 
     public TooNetWriter(IBufferWriter<byte> output, Delimiter delimiter = Delimiter.Comma)
     {
