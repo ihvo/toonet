@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>TooNet</AssemblyName>
+    <RootNamespace>TooNet</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>TooNet</PackageId>
+    <PackageDescription>High-performance .NET serialization library for TOON (Token-Oriented Object Notation) format, optimized for Large Language Model input with 30-60% token reduction compared to JSON.</PackageDescription>
+    <PackageTags>toon;serialization;json;llm;token;optimization</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/toonet/toonet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>
