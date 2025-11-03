@@ -4,7 +4,7 @@ High-performance .NET serialization library for TOON (Token-Oriented Object Nota
 
 ## Overview
 
-TooNet is a .NET 8.0+ library that provides efficient serialization to TOON format, a token-optimized alternative to JSON designed for Large Language Model (LLM) input. TOON achieves 30-60% token reduction compared to JSON while maintaining human readability.
+TooNet is a .NET 9.0+ library that provides efficient serialization to TOON format, a token-optimized alternative to JSON designed for Large Language Model (LLM) input. TOON achieves 30-60% token reduction compared to JSON while maintaining human readability.
 
 ## Features
 
