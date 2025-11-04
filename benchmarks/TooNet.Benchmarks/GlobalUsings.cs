@@ -1,0 +1,12 @@
+global using BenchmarkDotNet.Attributes;
+global using BenchmarkDotNet.Configs;
+global using BenchmarkDotNet.Jobs;
+global using BenchmarkDotNet.Exporters;
+global using BenchmarkDotNet.Columns;
+global using BenchmarkDotNet.Diagnosers;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Text.Json;
+global using TooNet;
+global using TooNet.Benchmarks.Models;

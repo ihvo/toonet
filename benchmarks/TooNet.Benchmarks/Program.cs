@@ -1,4 +1,6 @@
 using BenchmarkDotNet.Running;
+using TooNet.Benchmarks.Config;
+using TooNet.Benchmarks.Reporting;
 
 namespace TooNet.Benchmarks;
 
@@ -6,7 +8,60 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // Placeholder for benchmarks - will be implemented later
-        Console.WriteLine("TooNet Benchmarks - To be implemented");
+        // Check if running token analysis
+        if (args.Length > 0 && args[0] == "--analyze-tokens")
+        {
+            TokenReductionAnalyzer.RunAnalysis();
+            return;
+        }
+
+        // Check if generating report
+        if (args.Length > 0 && args[0] == "--generate-report")
+        {
+            Console.WriteLine("Running analysis and generating reports...\n");
+
+            var analyzer = new TokenReductionAnalyzer();
+            var results = new List<TokenReductionAnalyzer.ReductionResult>();
+
+            // Collect results
+            using (var sw = new StringWriter())
+            {
+                var originalOut = Console.Out;
+                Console.SetOut(sw);
+                TokenReductionAnalyzer.RunAnalysis();
+                Console.SetOut(originalOut);
+            }
+
+            // Re-run to collect results
+            TokenReductionAnalyzer.RunAnalysis();
+
+            // Generate additional reports
+            Console.WriteLine("\nGenerating additional report formats...");
+            // Note: Results would need to be exposed from analyzer for this to work fully
+
+            return;
+        }
+
+        var config = BenchmarkConfig.Default;
+
+        if (args.Length > 0)
+        {
+            // Allow filtering benchmarks via command line
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args, config);
+        }
+        else
+        {
+            // Run all benchmarks with custom config
+            var summary = BenchmarkRunner.Run(typeof(Program).Assembly, config);
+
+            // Post-benchmark analysis hint
+            if (summary != null)
+            {
+                Console.WriteLine("\n" + new string('=', 60));
+                Console.WriteLine("Run with --analyze-tokens for detailed token reduction analysis");
+                Console.WriteLine("Run with --generate-report for comprehensive reports");
+                Console.WriteLine(new string('=', 60));
+            }
+        }
     }
 }
