@@ -117,6 +117,9 @@ public static class TooNetSerializer
 
     private static void SerializeObject(ref TooNetWriter writer, object obj, Type type, TooNetSerializerOptions options, int depth, bool isNested = false)
     {
+        if (depth >= options.MaxDepth)
+            throw new TooNetException($"Maximum depth {options.MaxDepth} exceeded");
+
         if (!isNested)
         {
             writer.WriteStartObject();
@@ -205,6 +208,9 @@ public static class TooNetSerializer
 
     private static void SerializeEnumerable(ref TooNetWriter writer, IEnumerable enumerable, TooNetSerializerOptions options, int depth)
     {
+        if (depth >= options.MaxDepth)
+            throw new TooNetException($"Maximum depth {options.MaxDepth} exceeded");
+
         var items = enumerable.Cast<object?>().ToList();
         writer.WriteStartArray(items.Count, ArrayFormatMode.Inline);
 
