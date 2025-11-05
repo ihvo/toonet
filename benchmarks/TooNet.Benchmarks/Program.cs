@@ -15,6 +15,27 @@ public class Program
             return;
         }
 
+        // Check if running quick benchmark
+        if (args.Length > 0 && args[0] == "--quick")
+        {
+            QuickBenchmark.Run();
+            return;
+        }
+
+        // Check if running comparison
+        if (args.Length > 0 && args[0] == "--compare")
+        {
+            QuickComparison.Run();
+            return;
+        }
+
+        // Check if running safe comparison
+        if (args.Length > 0 && args[0] == "--safe-compare")
+        {
+            SafeComparison.Run();
+            return;
+        }
+
         // Check if generating report
         if (args.Length > 0 && args[0] == "--generate-report")
         {

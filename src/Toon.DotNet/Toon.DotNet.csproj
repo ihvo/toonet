@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Toon.DotNet</AssemblyName>
+    <RootNamespace>Toon.DotNet</RootNamespace>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <PackageId>Toon.DotNet</PackageId>
+    <PackageDescription>Simplified TOON serializer with minimal features (~20% faster than TooNet).</PackageDescription>
+    <PackageTags>toon;serialization;json;llm;token;optimization;minimal</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../TooNet/TooNet.csproj" />
+  </ItemGroup>
+</Project>
