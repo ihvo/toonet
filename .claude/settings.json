@@ -1,10 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dotnet build:*)",
       "Bash(dotnet restore:*)",
+      "Bash(dotnet build:*)",
       "Bash(dotnet run:*)",
-      "Bash(dotnet test:*)"
+      "Bash(dotnet test:*)",
+      "mcp__plugin_my-claude_context7__resolve-library-id",
+      "mcp__plugin_my-claude_context7__get-library-docs",
+      "mcp__plugin_my-claude_deepwiki__read_wiki_structure",
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
     ],
     "deny": [],
     "ask": []

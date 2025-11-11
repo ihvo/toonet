@@ -1,4 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CA1861</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Using Include="Xunit" />
     <Using Include="TooNet" />
@@ -19,6 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TooNet\TooNet.csproj" />
+    <ProjectReference Include="..\TooNet\TooNet.csproj" />
   </ItemGroup>
 </Project>

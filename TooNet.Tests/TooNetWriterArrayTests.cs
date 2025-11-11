@@ -278,7 +278,7 @@ public class TooNetWriterArrayTests
     #region List Format Tests
 
     [Fact]
-    public void WriteListItems_WritesCorrectFormat()
+    public void WriteListItemsWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -296,7 +296,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteListItemNumbers_WritesCorrectFormat()
+    public void WriteListItemNumbersWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -314,7 +314,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteListItemDoubles_WritesCorrectFormat()
+    public void WriteListItemDoublesWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -332,7 +332,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteListItem_OutsideArray_ThrowsException()
+    public void WriteListItemOutsideArrayThrowsException()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -347,7 +347,7 @@ public class TooNetWriterArrayTests
     #region Tabular Format Tests
 
     [Fact]
-    public void WriteTabularRows_WritesCorrectFormat()
+    public void WriteTabularRowsWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -373,7 +373,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteTabularWithBooleans_WritesCorrectFormat()
+    public void WriteTabularWithBooleansWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -399,7 +399,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteTabularWithNulls_WritesCorrectFormat()
+    public void WriteTabularWithNullsWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -425,7 +425,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteTabularWithPipeDelimiter_WritesCorrectFormat()
+    public void WriteTabularWithPipeDelimiterWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -451,7 +451,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteTabularRowStart_OutsideArray_ThrowsException()
+    public void WriteTabularRowStartOutsideArrayThrowsException()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -466,7 +466,7 @@ public class TooNetWriterArrayTests
     #region Array Format Mode Tests
 
     [Fact]
-    public void WriteStartArray_InlineWithContent_AddsSpace()
+    public void WriteStartArrayInlineWithContentAddsSpace()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -480,7 +480,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteStartArray_InlineEmpty_NoSpace()
+    public void WriteStartArrayInlineEmptyNoSpace()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -494,7 +494,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteStartArray_ListFormat_NoSpace()
+    public void WriteStartArrayListFormatNoSpace()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -508,7 +508,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteStartArray_TabularWithFields_IncludesFieldNames()
+    public void WriteStartArrayTabularWithFieldsIncludesFieldNames()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -522,7 +522,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArrayNumber_DoubleSpecialValues_HandledCorrectly()
+    public void WriteArrayNumberDoubleSpecialValuesHandledCorrectly()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();

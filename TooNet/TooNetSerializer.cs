@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace TooNet;
 
 /// <summary>
@@ -372,7 +374,7 @@ public static class TooNetSerializer
                 }
                 else
                 {
-                    writer.WriteArrayNumber(Convert.ToInt64(item));
+                    writer.WriteArrayNumber(Convert.ToInt64(item, CultureInfo.InvariantCulture));
                 }
             }
         }
@@ -432,7 +434,7 @@ public static class TooNetSerializer
                 }
                 else
                 {
-                    writer.WriteListItemNumber(Convert.ToInt64(item));
+                    writer.WriteListItemNumber(Convert.ToInt64(item, CultureInfo.InvariantCulture));
                 }
             }
             else
@@ -541,7 +543,7 @@ public static class TooNetSerializer
             }
             else
             {
-                writer.WriteTabularNumber(Convert.ToInt64(value), isFirst);
+                writer.WriteTabularNumber(Convert.ToInt64(value, CultureInfo.InvariantCulture), isFirst);
             }
         }
         else

@@ -37,6 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/TooNet/TooNet.csproj" />
+    <ProjectReference Include="../TooNet/TooNet.csproj" />
   </ItemGroup>
 </Project>

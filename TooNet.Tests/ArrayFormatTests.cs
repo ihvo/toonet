@@ -5,7 +5,7 @@ namespace TooNet.Tests;
 public class ArrayFormatTests
 {
     [Fact]
-    public void InlineFormat_PrimitiveArray_SerializesCorrectly()
+    public void InlineFormatPrimitiveArraySerializesCorrectly()
     {
         var data = new { Items = new[] { 1, 2, 3, 4, 5 } };
         var options = new TooNetSerializerOptions { ArrayMode = ArrayFormatMode.Inline };
@@ -16,7 +16,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void InlineFormat_StringArray_SerializesCorrectly()
+    public void InlineFormatStringArraySerializesCorrectly()
     {
         var data = new { Tags = new[] { "reading", "gaming", "coding" } };
         var options = new TooNetSerializerOptions { ArrayMode = ArrayFormatMode.Inline };
@@ -27,7 +27,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void ListFormat_PrimitiveArray_SerializesCorrectly()
+    public void ListFormatPrimitiveArraySerializesCorrectly()
     {
         var data = new { Items = new[] { 1, 2, 3 } };
         var options = new TooNetSerializerOptions { ArrayMode = ArrayFormatMode.List };
@@ -42,7 +42,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void ListFormat_MixedPrimitives_SerializesCorrectly()
+    public void ListFormatMixedPrimitivesSerializesCorrectly()
     {
         var data = new { Items = new object[] { "hello", 42, true, "world" } };
         var options = new TooNetSerializerOptions { ArrayMode = ArrayFormatMode.List };
@@ -58,7 +58,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void ListFormat_WithNestedObjects_SerializesCorrectly()
+    public void ListFormatWithNestedObjectsSerializesCorrectly()
     {
         var data = new
         {
@@ -81,7 +81,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void TabularFormat_UniformObjects_SerializesCorrectly()
+    public void TabularFormatUniformObjectsSerializesCorrectly()
     {
         var data = new
         {
@@ -104,7 +104,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void TabularFormat_WithNullValues_SerializesCorrectly()
+    public void TabularFormatWithNullValuesSerializesCorrectly()
     {
         var items = new[]
         {
@@ -125,7 +125,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void AutoFormat_PrimitiveArray_UsesInline()
+    public void AutoFormatPrimitiveArrayUsesInline()
     {
         var data = new { Items = new[] { 1, 2, 3, 4, 5 } };
         var options = new TooNetSerializerOptions { ArrayMode = ArrayFormatMode.Auto };
@@ -136,7 +136,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void AutoFormat_UniformObjectsAboveThreshold_UsesTabular()
+    public void AutoFormatUniformObjectsAboveThresholdUsesTabular()
     {
         var data = new
         {
@@ -163,7 +163,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void AutoFormat_UniformObjectsBelowThreshold_UsesList()
+    public void AutoFormatUniformObjectsBelowThresholdUsesList()
     {
         var data = new
         {
@@ -190,7 +190,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void AutoFormat_NestedObjects_UsesList()
+    public void AutoFormatNestedObjectsUsesList()
     {
         var data = new
         {
@@ -209,7 +209,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void TabularFormat_WithDelimiter_UsesCorrectDelimiter()
+    public void TabularFormatWithDelimiterUsesCorrectDelimiter()
     {
         var data = new
         {
@@ -234,7 +234,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void ListFormat_WithNulls_SerializesCorrectly()
+    public void ListFormatWithNullsSerializesCorrectly()
     {
         var data = new { Items = new int?[] { 1, null, 3 } };
         var options = new TooNetSerializerOptions { ArrayMode = ArrayFormatMode.List };
@@ -249,7 +249,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void TabularFormat_EmptyArray_SerializesCorrectly()
+    public void TabularFormatEmptyArraySerializesCorrectly()
     {
         var data = new { Items = Array.Empty<object>() };
         var options = new TooNetSerializerOptions { ArrayMode = ArrayFormatMode.Tabular };
@@ -260,7 +260,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void ListFormat_EmptyArray_SerializesCorrectly()
+    public void ListFormatEmptyArraySerializesCorrectly()
     {
         var data = new { Items = Array.Empty<int>() };
         var options = new TooNetSerializerOptions { ArrayMode = ArrayFormatMode.List };
@@ -271,7 +271,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void TabularFormat_NonUniformObjects_FallsBackToList()
+    public void TabularFormatNonUniformObjectsFallsBackToList()
     {
         var data = new
         {
@@ -290,7 +290,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void TabularFormat_WithDoubleValues_SerializesCorrectly()
+    public void TabularFormatWithDoubleValuesSerializesCorrectly()
     {
         var data = new
         {
@@ -310,7 +310,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void ListFormat_NestedObjectsWithMultipleLevels_SerializesCorrectly()
+    public void ListFormatNestedObjectsWithMultipleLevelsSerializesCorrectly()
     {
         var data = new
         {
@@ -338,7 +338,7 @@ public class ArrayFormatTests
     }
 
     [Fact]
-    public void TabularFormat_WithEnums_SerializesCorrectly()
+    public void TabularFormatWithEnumsSerializesCorrectly()
     {
         var data = new
         {
