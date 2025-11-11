@@ -1,4 +1,14 @@
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Diagnosers;
+using BenchmarkDotNet.Columns;
+using BenchmarkDotNet.Exporters;
+using BenchmarkDotNet.Exporters.Csv;
 using BenchmarkDotNet.Exporters.Json;
+using BenchmarkDotNet.Validators;
+using BenchmarkDotNet.Loggers;
+using BenchmarkDotNet.Environments;
+using BenchmarkDotNet.Order;
 
 namespace TooNet.Benchmarks.Config;
 
@@ -8,27 +18,42 @@ public class BenchmarkConfig : ManualConfig
 
     public BenchmarkConfig()
     {
-        // Use a medium-fast job for development iterations
-        AddJob(Job.Default
-            .WithWarmupCount(1)
-            .WithIterationCount(3)
-            .WithInvocationCount(1));
+        // Job Configuration - ShortRunJob for quick validation
+        AddJob(Job.ShortRun
+            .WithRuntime(CoreRuntime.Core90)
+            .WithGcServer(true)
+            .WithGcConcurrent(true)
+            .AsBaseline());
 
-        // Export results in multiple formats
-        AddExporter(JsonExporter.Full);
-        AddExporter(HtmlExporter.Default);
-        AddExporter(MarkdownExporter.GitHub);
+        // Diagnosers
+        AddDiagnoser(MemoryDiagnoser.Default);
+        AddDiagnoser(ThreadingDiagnoser.Default);
 
-        // Display relevant statistics
+        // Statistical Columns
+        AddColumn(StatisticColumn.Min);
+        AddColumn(StatisticColumn.Max);
+        AddColumn(StatisticColumn.Median);
+        AddColumn(StatisticColumn.P95);
         AddColumn(StatisticColumn.Mean);
         AddColumn(StatisticColumn.Error);
         AddColumn(StatisticColumn.StdDev);
+        AddColumn(RankColumn.Arabic);
         AddColumn(BaselineRatioColumn.RatioMean);
 
-        // Track memory allocations
-        AddDiagnoser(MemoryDiagnoser.Default);
+        // Exporters for CI/CD
+        AddExporter(JsonExporter.Brief);
+        AddExporter(JsonExporter.Full);
+        AddExporter(MarkdownExporter.GitHub);
+        AddExporter(CsvExporter.Default);
+        AddExporter(HtmlExporter.Default);
 
-        // Show options
-        WithOption(ConfigOptions.DisableOptimizationsValidator, true);
+        // Validators
+        AddValidator(JitOptimizationsValidator.FailOnError);
+
+        // Order by speed
+        Orderer = new DefaultOrderer(SummaryOrderPolicy.FastestToSlowest);
+
+        // Loggers
+        AddLogger(ConsoleLogger.Default);
     }
 }

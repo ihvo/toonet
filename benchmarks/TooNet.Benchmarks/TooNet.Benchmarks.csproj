@@ -1,23 +1,54 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <!-- Core Settings -->
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- Benchmark Optimization -->
+    <Optimize>true</Optimize>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Deterministic>true</Deterministic>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+
+    <!-- Disable Warnings for Benchmarks -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
+    <RunAnalyzers>false</RunAnalyzers>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
+
+    <!-- Debug Symbols (for profiling) -->
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+
+    <!-- BenchmarkDotNet Specific -->
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <ValidateExecutableReferencesMatchSelfContained>false</ValidateExecutableReferencesMatchSelfContained>
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Core Package -->
     <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+
+    <!-- Platform-Specific Diagnostics -->
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.14.0"
+                      Condition="'$(OS)' == 'Windows_NT'" />
+
+    <!-- Serialization Libraries -->
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.Text.Json" Version="9.0.0" />
+    <PackageReference Include="System.Text.Json" Version="9.0.10" />
+
+    <!-- Other TOON Libraries for Comparison -->
+    <PackageReference Include="AIDotNet.Toon" Version="0.1.0" />
+    <PackageReference Include="Toon.DotNet" Version="1.0.0" />
+    <PackageReference Include="Toon.NET" Version="0.3.1" />
+    <PackageReference Include="ToonSharp" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="../../src/TooNet/TooNet.csproj" />
-    <ProjectReference Include="../../src/Toon.NET/Toon.NET.csproj" />
-    <ProjectReference Include="../../src/ToonSharp/ToonSharp.csproj" />
-    <ProjectReference Include="../../src/AIDotNet.Toon/AIDotNet.Toon.csproj" />
-    <ProjectReference Include="../../src/Toon.DotNet/Toon.DotNet.csproj" />
   </ItemGroup>
 </Project>

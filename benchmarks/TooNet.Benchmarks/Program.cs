@@ -1,3 +1,5 @@
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using TooNet.Benchmarks.Config;
 using TooNet.Benchmarks.Reporting;
@@ -23,18 +25,18 @@ public class Program
         }
 
         // Check if running comparison
-        if (args.Length > 0 && args[0] == "--compare")
-        {
-            QuickComparison.Run();
-            return;
-        }
+        // if (args.Length > 0 && args[0] == "--compare")
+        // {
+        //     QuickComparison.Run();
+        //     return;
+        // }
 
         // Check if running safe comparison
-        if (args.Length > 0 && args[0] == "--safe-compare")
-        {
-            SafeComparison.Run();
-            return;
-        }
+        // if (args.Length > 0 && args[0] == "--safe-compare")
+        // {
+        //     SafeComparison.Run();
+        //     return;
+        // }
 
         // Check if generating report
         if (args.Length > 0 && args[0] == "--generate-report")
@@ -63,7 +65,7 @@ public class Program
             return;
         }
 
-        var config = BenchmarkConfig.Default;
+        var config = GetConfig(args);
 
         if (args.Length > 0)
         {
@@ -84,5 +86,15 @@ public class Program
                 Console.WriteLine(new string('=', 60));
             }
         }
+    }
+
+    private static IConfig GetConfig(string[] args)
+    {
+        #if DEBUG
+        // Use in-process for debugging
+        return new Config.DebugInProcessConfig();
+        #else
+        return BenchmarkConfig.Default;
+        #endif
     }
 }
