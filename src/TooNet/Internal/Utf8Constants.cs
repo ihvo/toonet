@@ -1,4 +1,4 @@
-namespace TooNet.Internal;
+namespace TooNet;
 
 /// <summary>
 /// Provides UTF-8 byte constants used throughout TOON serialization.

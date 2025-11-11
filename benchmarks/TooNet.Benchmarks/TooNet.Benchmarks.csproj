@@ -1,51 +1,39 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Benchmark project-specific global usings -->
+  <ItemGroup>
+    <Using Include="System.Diagnostics" />
+    <Using Include="System.Text.Json" />
+    <Using Include="BenchmarkDotNet.Attributes" />
+    <Using Include="BenchmarkDotNet.Running" />
+    <Using Include="TooNet" />
+    <Using Include="TooNet.Benchmarks.Data" />
+    <Using Include="TooNet.Benchmarks.Models" />
+    <Using Include="TooNet.Benchmarks.Utils" />
+  </ItemGroup>
+
   <PropertyGroup>
-    <!-- Core Settings -->
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-
-    <!-- Benchmark Optimization -->
-    <Optimize>true</Optimize>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Deterministic>true</Deterministic>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-
-    <!-- Disable Warnings for Benchmarks -->
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
-    <RunAnalyzers>false</RunAnalyzers>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
-
-    <!-- Debug Symbols (for profiling) -->
-    <DebugType>pdbonly</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-
-    <!-- BenchmarkDotNet Specific -->
-    <GenerateProgramFile>false</GenerateProgramFile>
-    <ValidateExecutableReferencesMatchSelfContained>false</ValidateExecutableReferencesMatchSelfContained>
-    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+    <IsBenchmarkProject>true</IsBenchmarkProject>
+    <!-- Suppress analyzers that are not critical for benchmarks -->
+    <NoWarn>$(NoWarn);CA1707;CA1305;CA1822;CA1861</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Core Package -->
-    <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageReference Include="BenchmarkDotNet" />
 
     <!-- Platform-Specific Diagnostics -->
-    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.14.0"
+    <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows"
                       Condition="'$(OS)' == 'Windows_NT'" />
 
     <!-- Serialization Libraries -->
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.Text.Json" Version="9.0.10" />
+    <PackageReference Include="System.Text.Json" />
 
     <!-- Other TOON Libraries for Comparison -->
-    <PackageReference Include="AIDotNet.Toon" Version="0.1.0" />
-    <PackageReference Include="Toon.DotNet" Version="1.0.0" />
-    <PackageReference Include="Toon.NET" Version="0.3.1" />
-    <PackageReference Include="ToonSharp" Version="1.0.0" />
+    <PackageReference Include="AIDotNet.Toon" />
+    <PackageReference Include="Toon.DotNet" />
+    <PackageReference Include="Toon.NET" />
+    <PackageReference Include="ToonSharp" />
   </ItemGroup>
 
   <ItemGroup>

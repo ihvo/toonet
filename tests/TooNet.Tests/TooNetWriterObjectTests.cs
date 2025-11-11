@@ -1,13 +1,9 @@
-using System.Text;
-using TooNet.Internal;
-using Xunit;
-
 namespace TooNet.Tests;
 
 public class TooNetWriterObjectTests
 {
     [Fact]
-    public void WriteObject_SimpleProperties()
+    public void WriteObjectSimpleProperties()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -26,7 +22,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_NestedObject()
+    public void WriteObjectNestedObject()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -46,7 +42,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_QuotedKeys()
+    public void WriteObjectQuotedKeys()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -67,7 +63,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_NullValues()
+    public void WriteObjectNullValues()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -84,7 +80,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_MixedPropertyTypes()
+    public void WriteObjectMixedPropertyTypes()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -111,7 +107,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_DeeplyNestedObjects()
+    public void WriteObjectDeeplyNestedObjects()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -135,7 +131,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_MultipleNestedObjects()
+    public void WriteObjectMultipleNestedObjects()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -158,7 +154,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WritePropertyName_OutsideObjectContext_ThrowsException()
+    public void WritePropertyNameOutsideObjectContextThrowsException()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -168,7 +164,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_EmptyObject()
+    public void WriteObjectEmptyObject()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -180,7 +176,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_SingleProperty()
+    public void WriteObjectSingleProperty()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -195,7 +191,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_ColonSpacingForPrimitives()
+    public void WriteObjectColonSpacingForPrimitives()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -211,7 +207,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_ColonNoSpaceForNestedObjects()
+    public void WriteObjectColonNoSpaceForNestedObjects()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -230,7 +226,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_PropertiesOnSeparateLines()
+    public void WriteObjectPropertiesOnSeparateLines()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);
@@ -253,7 +249,7 @@ public class TooNetWriterObjectTests
     }
 
     [Fact]
-    public void WriteObject_NestedObjectIndentation()
+    public void WriteObjectNestedObjectIndentation()
     {
         using var buffer = new PooledBufferWriter();
         var writer = new TooNetWriter(buffer);

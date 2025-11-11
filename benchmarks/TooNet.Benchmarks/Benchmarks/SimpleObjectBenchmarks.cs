@@ -1,8 +1,4 @@
-using Newtonsoft.Json;
-using TooNet.Benchmarks.Data;
-using TooNet.Benchmarks.Utils;
-
-namespace TooNet.Benchmarks.Benchmarks;
+namespace TooNet.Benchmarks;
 
 [MemoryDiagnoser]
 [JsonExporter]
@@ -46,9 +42,6 @@ public class SimpleObjectBenchmarks
     public string SimplePrimitive_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_simplePrimitive);
 
     [Benchmark]
-    public string SimplePrimitive_NewtonsoftJson() => JsonConvert.SerializeObject(_simplePrimitive);
-
-    [Benchmark]
     public string SimplePrimitive_TooNet() => TooNetSerializer.Serialize(_simplePrimitive);
 
     [Benchmark]
@@ -61,25 +54,16 @@ public class SimpleObjectBenchmarks
     public string SimpleNested_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_simpleNested);
 
     [Benchmark]
-    public string SimpleNested_NewtonsoftJson() => JsonConvert.SerializeObject(_simpleNested);
-
-    [Benchmark]
     public string SimpleNested_TooNet() => TooNetSerializer.Serialize(_simpleNested);
 
     [Benchmark]
     public string SimpleWithNulls_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_simpleWithNulls);
 
     [Benchmark]
-    public string SimpleWithNulls_NewtonsoftJson() => JsonConvert.SerializeObject(_simpleWithNulls);
-
-    [Benchmark]
     public string SimpleWithNulls_TooNet() => TooNetSerializer.Serialize(_simpleWithNulls);
 
     [Benchmark]
     public string SimpleWithDates_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_simpleWithDates);
-
-    [Benchmark]
-    public string SimpleWithDates_NewtonsoftJson() => JsonConvert.SerializeObject(_simpleWithDates);
 
     [Benchmark]
     public string SimpleWithDates_TooNet() => TooNetSerializer.Serialize(_simpleWithDates);

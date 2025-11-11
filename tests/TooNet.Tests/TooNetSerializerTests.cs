@@ -1,6 +1,3 @@
-using System.Text;
-using Xunit;
-
 namespace TooNet.Tests;
 
 public class TooNetSerializerTests
@@ -19,14 +16,14 @@ public class TooNetSerializerTests
         Pending
     }
 
-    public class UserWithEnum
+    public class UserWithStatus
     {
         public int Id { get; set; }
         public Status Status { get; set; }
     }
 
     [Fact]
-    public void Serialize_SimpleObject()
+    public void SerializeSimpleObject()
     {
         var user = new User
         {
@@ -43,7 +40,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_Primitives()
+    public void SerializePrimitives()
     {
         Assert.Equal("42", TooNetSerializer.Serialize(42));
         Assert.Equal("3.14", TooNetSerializer.Serialize(3.14));
@@ -53,7 +50,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_Null()
+    public void SerializeNull()
     {
         string? nullString = null;
         var result = TooNetSerializer.Serialize(nullString);
@@ -61,9 +58,9 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_EnumAsString()
+    public void SerializeEnumAsString()
     {
-        var user = new UserWithEnum
+        var user = new UserWithStatus
         {
             Id = 1,
             Status = Status.Active
@@ -76,9 +73,9 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_EnumAsNumber()
+    public void SerializeEnumAsNumber()
     {
-        var user = new UserWithEnum
+        var user = new UserWithStatus
         {
             Id = 1,
             Status = Status.Pending
@@ -91,7 +88,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_IgnoreNullValues()
+    public void SerializeIgnoreNullValues()
     {
         var obj = new { Name = "Test", Description = (string?)null };
 
@@ -103,7 +100,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_IncludeNullValues()
+    public void SerializeIncludeNullValues()
     {
         var obj = new { Name = "Test", Description = (string?)null };
 
@@ -115,7 +112,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_Array()
+    public void SerializeArray()
     {
         var numbers = new[] { 1, 2, 3, 4, 5 };
         var result = TooNetSerializer.Serialize(numbers);
@@ -124,7 +121,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_StringArray()
+    public void SerializeStringArray()
     {
         var names = new[] { "Alice", "Bob", "Charlie" };
         var result = TooNetSerializer.Serialize(names);
@@ -133,7 +130,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_BooleanArray()
+    public void SerializeBooleanArray()
     {
         var flags = new[] { true, false, true };
         var result = TooNetSerializer.Serialize(flags);
@@ -142,16 +139,16 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_EmptyArray()
+    public void SerializeEmptyArray()
     {
-        var empty = new int[] { };
+        var empty = Array.Empty<object>();
         var result = TooNetSerializer.Serialize(empty);
 
         Assert.Equal("[0]:", result);
     }
 
     [Fact]
-    public void SerializeToUtf8Bytes_ReturnsValidBytes()
+    public void SerializeToUtf8BytesReturnsValidBytes()
     {
         var user = new User
         {
@@ -169,7 +166,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_NestedObject()
+    public void SerializeNestedObject()
     {
         var obj = new
         {
@@ -190,7 +187,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_ObjectWithArray()
+    public void SerializeObjectWithArray()
     {
         var obj = new
         {
@@ -205,7 +202,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_MaxDepthExceeded_ThrowsException()
+    public void SerializeMaxDepthExceededThrowsException()
     {
         var options = new TooNetSerializerOptions { MaxDepth = 2 };
 
@@ -227,7 +224,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_WithCustomDelimiter()
+    public void SerializeWithCustomDelimiter()
     {
         var numbers = new[] { 1, 2, 3 };
         var options = new TooNetSerializerOptions { DefaultDelimiter = Delimiter.Pipe };
@@ -237,7 +234,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_DecimalAsDouble()
+    public void SerializeDecimalAsDouble()
     {
         var value = 123.456m;
         var result = TooNetSerializer.Serialize(value);
@@ -246,7 +243,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_Float()
+    public void SerializeFloat()
     {
         var value = 3.14f;
         var result = TooNetSerializer.Serialize(value);
@@ -255,7 +252,7 @@ public class TooNetSerializerTests
     }
 
     [Fact]
-    public void Serialize_Long()
+    public void SerializeLong()
     {
         var value = 9999999999L;
         var result = TooNetSerializer.Serialize(value);

@@ -1,11 +1,9 @@
-using Xunit;
-
 namespace TooNet.Tests;
 
 public class DelimiterTests
 {
     [Fact]
-    public void Delimiter_HasCorrectCharValues()
+    public void DelimiterHasCorrectCharValues()
     {
         // Assert
         Assert.Equal(',', (char)Delimiter.Comma);
@@ -14,7 +12,7 @@ public class DelimiterTests
     }
 
     [Fact]
-    public void Delimiter_HasCorrectIntValues()
+    public void DelimiterHasCorrectIntValues()
     {
         // Assert
         Assert.Equal(44, (int)Delimiter.Comma);  // ASCII for ','
@@ -23,7 +21,7 @@ public class DelimiterTests
     }
 
     [Fact]
-    public void Delimiter_AllValuesAreDefined()
+    public void DelimiterAllValuesAreDefined()
     {
         // Arrange
         var values = Enum.GetValues<Delimiter>();

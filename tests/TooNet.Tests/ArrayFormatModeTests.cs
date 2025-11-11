@@ -1,11 +1,9 @@
-using Xunit;
-
 namespace TooNet.Tests;
 
 public class ArrayFormatModeTests
 {
     [Fact]
-    public void ArrayFormatMode_HasCorrectValues()
+    public void ArrayFormatModeHasCorrectValues()
     {
         // Arrange
         var values = Enum.GetValues<ArrayFormatMode>();
@@ -19,7 +17,7 @@ public class ArrayFormatModeTests
     }
 
     [Fact]
-    public void ArrayFormatMode_DefaultIsAuto()
+    public void ArrayFormatModeDefaultIsAuto()
     {
         // Arrange
         ArrayFormatMode mode = default;
@@ -33,7 +31,7 @@ public class ArrayFormatModeTests
     [InlineData(ArrayFormatMode.Inline, 1)]
     [InlineData(ArrayFormatMode.Tabular, 2)]
     [InlineData(ArrayFormatMode.List, 3)]
-    public void ArrayFormatMode_HasExpectedNumericValues(ArrayFormatMode mode, int expectedValue)
+    public void ArrayFormatModeHasExpectedNumericValues(ArrayFormatMode mode, int expectedValue)
     {
         // Assert
         Assert.Equal(expectedValue, (int)mode);

@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Reflection;
-using System.Text;
-using TooNet.Internal;
-
 namespace TooNet;
 
 /// <summary>
@@ -101,7 +96,7 @@ public static class TooNetSerializer
             }
             else
             {
-                writer.WriteNumber(Convert.ToInt64(value));
+                writer.WriteNumber(Convert.ToInt64(value, CultureInfo.InvariantCulture));
             }
             return;
         }
@@ -192,7 +187,7 @@ public static class TooNetSerializer
                 }
                 else
                 {
-                    writer.WritePropertyNumber(Convert.ToInt64(propValue));
+                    writer.WritePropertyNumber(Convert.ToInt64(propValue, CultureInfo.InvariantCulture));
                 }
             }
             else if (propValue is IEnumerable enumerable2 && prop.PropertyType != typeof(string))

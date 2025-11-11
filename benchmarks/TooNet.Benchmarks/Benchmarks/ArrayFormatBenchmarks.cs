@@ -1,7 +1,4 @@
-using TooNet.Benchmarks.Data;
-using TooNet.Benchmarks.Utils;
-
-namespace TooNet.Benchmarks.Benchmarks;
+namespace TooNet.Benchmarks;
 
 [MemoryDiagnoser]
 public class ArrayFormatBenchmarks

@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Unit Tests",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/tests/TooNet.Tests/bin/Debug/net9.0/TooNet.Tests.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/tests/TooNet.Tests",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+    {
+      "name": "Debug Benchmarks",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-release",
+      "program": "${workspaceFolder}/benchmarks/TooNet.Benchmarks/bin/Release/net9.0/TooNet.Benchmarks.dll",
+      "args": ["--quick"],
+      "cwd": "${workspaceFolder}/benchmarks/TooNet.Benchmarks",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}

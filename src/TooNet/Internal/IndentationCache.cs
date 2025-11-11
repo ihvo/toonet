@@ -1,4 +1,4 @@
-namespace TooNet.Internal;
+namespace TooNet;
 
 /// <summary>
 /// Provides cached indentation bytes for efficient TOON formatting.

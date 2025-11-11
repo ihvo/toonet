@@ -1,11 +1,9 @@
-using Xunit;
-
 namespace TooNet.Tests;
 
 public class TooNetSerializerOptionsTests
 {
     [Fact]
-    public void Default_ReturnsSingletonInstance()
+    public void DefaultReturnsSingletonInstance()
     {
         // Act
         var first = TooNetSerializerOptions.Default;
@@ -16,7 +14,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void Default_HasCorrectDefaultValues()
+    public void DefaultHasCorrectDefaultValues()
     {
         // Arrange
         var options = TooNetSerializerOptions.Default;
@@ -34,7 +32,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void NewInstance_HasCorrectDefaultValues()
+    public void NewInstanceHasCorrectDefaultValues()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -52,7 +50,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void DefaultDelimiter_CanBeSetAndRetrieved()
+    public void DefaultDelimiterCanBeSetAndRetrieved()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -65,7 +63,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void IncludeLengthMarkers_CanBeSetAndRetrieved()
+    public void IncludeLengthMarkersCanBeSetAndRetrieved()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -78,7 +76,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void ArrayMode_CanBeSetAndRetrieved()
+    public void ArrayModeCanBeSetAndRetrieved()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -91,7 +89,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void TabularThreshold_CanBeSetAndRetrieved()
+    public void TabularThresholdCanBeSetAndRetrieved()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -104,7 +102,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void InlineMaxLength_CanBeSetAndRetrieved()
+    public void InlineMaxLengthCanBeSetAndRetrieved()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -117,7 +115,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void MaxDepth_CanBeSetAndRetrieved()
+    public void MaxDepthCanBeSetAndRetrieved()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -130,7 +128,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void InitialBufferSize_CanBeSetAndRetrieved()
+    public void InitialBufferSizeCanBeSetAndRetrieved()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -143,7 +141,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void IgnoreNullValues_CanBeSetAndRetrieved()
+    public void IgnoreNullValuesCanBeSetAndRetrieved()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -156,7 +154,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void WriteEnumsAsStrings_CanBeSetAndRetrieved()
+    public void WriteEnumsAsStringsCanBeSetAndRetrieved()
     {
         // Arrange
         var options = new TooNetSerializerOptions();
@@ -169,7 +167,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void Class_IsSealed()
+    public void ClassIsSealed()
     {
         // Arrange
         var type = typeof(TooNetSerializerOptions);
@@ -179,7 +177,7 @@ public class TooNetSerializerOptionsTests
     }
 
     [Fact]
-    public void NewInstance_IsIndependentOfDefault()
+    public void NewInstanceIsIndependentOfDefault()
     {
         // Arrange & Act
         var newOptions = new TooNetSerializerOptions();

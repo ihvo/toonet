@@ -4,6 +4,9 @@
 
 TooNet is a high-performance .NET 9.0 serialization library for TOON (Token-Oriented Object Notation) format. TOON achieves 30-60% token reduction compared to JSON while maintaining human readability, making it ideal for Large Language Model (LLM) input.
 
+## TOON spec
+@docs/toon-spec-for-agents.md
+
 ## Architecture Principles
 
 ### Core Design Philosophy
@@ -37,8 +40,8 @@ TooNet is a high-performance .NET 9.0 serialization library for TOON (Token-Orie
 public class TooNetWriter
 public void WriteString()
 
-// Private fields: _camelCase with underscore prefix
-private readonly byte[] _buffer;
+// Private fields: camelCase
+private readonly byte[] buffer;
 
 // Parameters and local variables: camelCase
 public void WriteNumber(long value)
@@ -47,9 +50,9 @@ var result = Calculate();
 // Constants: PascalCase
 public const int MaxDepth = 64;
 
-// Test methods: MethodName_Scenario_ExpectedResult
+// Test methods: MethodNameScenarioExpectedResult
 [Fact]
-public void Serialize_SimpleObject_ReturnsValidToon()
+public void SerializeSimpleObjectReturnsValidToon()
 ```
 
 ### Performance Patterns

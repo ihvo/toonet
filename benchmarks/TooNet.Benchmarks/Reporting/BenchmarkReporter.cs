@@ -1,6 +1,3 @@
-using System.Text;
-using TooNet.Benchmarks.Utils;
-
 namespace TooNet.Benchmarks.Reporting;
 
 public static class BenchmarkReporter

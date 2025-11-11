@@ -1,12 +1,4 @@
-using System.Text;
-using System.Text.Json;
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Diagnosers;
-using Newtonsoft.Json;
-using TooNet.Benchmarks.Data;
-using TooNet.Benchmarks.Models;
-
-namespace TooNet.Benchmarks.Benchmarks;
+namespace TooNet.Benchmarks;
 
 [SimpleJob(RuntimeMoniker.Net90)]
 [ThreadingDiagnoser]
@@ -63,15 +55,6 @@ public class ThroughputBenchmarks
     }
 
     [Benchmark]
-    public void SmallObject_HighFrequency_NewtonsoftJson()
-    {
-        for (int i = 0; i < IterationCount; i++)
-        {
-            _ = JsonConvert.SerializeObject(_smallObjects[i % _smallObjects.Count]);
-        }
-    }
-
-    [Benchmark]
     public void SmallObject_HighFrequency_TooNet()
     {
         for (int i = 0; i < IterationCount; i++)
@@ -88,17 +71,6 @@ public class ThroughputBenchmarks
         for (int i = 0; i < 10; i++)
         {
             result = System.Text.Json.JsonSerializer.Serialize(_batchCatalog);
-        }
-        return result;
-    }
-
-    [Benchmark]
-    public string BatchProcess_NewtonsoftJson()
-    {
-        var result = "";
-        for (int i = 0; i < 10; i++)
-        {
-            result = JsonConvert.SerializeObject(_batchCatalog);
         }
         return result;
     }
@@ -128,18 +100,6 @@ public class ThroughputBenchmarks
     }
 
     [Benchmark]
-    public long LargeOperation_NewtonsoftJson()
-    {
-        var largeOrders = new List<Order>();
-        for (int i = 0; i < 100; i++)
-        {
-            largeOrders.Add(DataGenerator.GenerateComplexOrder(25));
-        }
-        var json = JsonConvert.SerializeObject(largeOrders);
-        return Encoding.UTF8.GetByteCount(json);
-    }
-
-    [Benchmark]
     public long LargeOperation_TooNet()
     {
         var largeOrders = new List<Order>();
@@ -159,18 +119,6 @@ public class ThroughputBenchmarks
         for (int i = 0; i < 100; i++)
         {
             var json = System.Text.Json.JsonSerializer.Serialize(_mediumProducts);
-            totalBytes += Encoding.UTF8.GetByteCount(json);
-        }
-        return totalBytes;
-    }
-
-    [Benchmark]
-    public long MegabytesPerSecond_NewtonsoftJson()
-    {
-        long totalBytes = 0;
-        for (int i = 0; i < 100; i++)
-        {
-            var json = JsonConvert.SerializeObject(_mediumProducts);
             totalBytes += Encoding.UTF8.GetByteCount(json);
         }
         return totalBytes;
@@ -197,18 +145,6 @@ public class ThroughputBenchmarks
             for (int j = 0; j < 10; j++)
             {
                 _ = System.Text.Json.JsonSerializer.Serialize(_mediumProducts);
-            }
-        });
-    }
-
-    [Benchmark]
-    public void Concurrent_NewtonsoftJson()
-    {
-        Parallel.For(0, 10, i =>
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                _ = JsonConvert.SerializeObject(_mediumProducts);
             }
         });
     }
@@ -262,25 +198,6 @@ public class ThroughputBenchmarks
             if (i % 10 == 0)
             {
                 _ = System.Text.Json.JsonSerializer.Serialize(_largeOrders[0]);
-            }
-        }
-    }
-
-    [Benchmark]
-    public void MixedWorkload_NewtonsoftJson()
-    {
-        for (int i = 0; i < 50; i++)
-        {
-            _ = JsonConvert.SerializeObject(_smallObjects[i % _smallObjects.Count]);
-
-            if (i % 5 == 0)
-            {
-                _ = JsonConvert.SerializeObject(_mediumProducts);
-            }
-
-            if (i % 10 == 0)
-            {
-                _ = JsonConvert.SerializeObject(_largeOrders[0]);
             }
         }
     }

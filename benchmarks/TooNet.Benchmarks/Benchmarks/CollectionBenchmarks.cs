@@ -1,8 +1,4 @@
-using Newtonsoft.Json;
-using TooNet.Benchmarks.Data;
-using TooNet.Benchmarks.Utils;
-
-namespace TooNet.Benchmarks.Benchmarks;
+namespace TooNet.Benchmarks;
 
 [MemoryDiagnoser]
 [JsonExporter]
@@ -39,9 +35,6 @@ public class CollectionBenchmarks
     public string Collection_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_currentCollection);
 
     [Benchmark]
-    public string Collection_NewtonsoftJson() => JsonConvert.SerializeObject(_currentCollection);
-
-    [Benchmark]
     public string Collection_TooNet() => TooNetSerializer.Serialize(_currentCollection);
 
     [Benchmark]
@@ -52,9 +45,6 @@ public class CollectionBenchmarks
 
     [Benchmark]
     public string ProductCatalog_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_catalog);
-
-    [Benchmark]
-    public string ProductCatalog_NewtonsoftJson() => JsonConvert.SerializeObject(_catalog);
 
     [Benchmark]
     public string ProductCatalog_TooNet() => TooNetSerializer.Serialize(_catalog);

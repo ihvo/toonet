@@ -1,8 +1,4 @@
-using Newtonsoft.Json;
-using TooNet.Benchmarks.Data;
-using TooNet.Benchmarks.Utils;
-
-namespace TooNet.Benchmarks.Benchmarks;
+namespace TooNet.Benchmarks;
 
 [MemoryDiagnoser]
 [JsonExporter]
@@ -27,25 +23,16 @@ public class TabularDataBenchmarks
     public string SalesRecords_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_salesRecords);
 
     [Benchmark]
-    public string SalesRecords_NewtonsoftJson() => JsonConvert.SerializeObject(_salesRecords);
-
-    [Benchmark]
     public string SalesRecords_TooNet() => TooNetSerializer.Serialize(_salesRecords);
 
     [Benchmark]
     public string LogEntries_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_logEntries);
 
     [Benchmark]
-    public string LogEntries_NewtonsoftJson() => JsonConvert.SerializeObject(_logEntries);
-
-    [Benchmark]
     public string LogEntries_TooNet() => TooNetSerializer.Serialize(_logEntries);
 
     [Benchmark]
     public string StockPrices_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_stockPrices);
-
-    [Benchmark]
-    public string StockPrices_NewtonsoftJson() => JsonConvert.SerializeObject(_stockPrices);
 
     [Benchmark]
     public string StockPrices_TooNet() => TooNetSerializer.Serialize(_stockPrices);

@@ -1,7 +1,4 @@
-using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
-using TooNet.Benchmarks.Config;
 using TooNet.Benchmarks.Reporting;
 
 namespace TooNet.Benchmarks;
@@ -88,8 +85,10 @@ public class Program
         }
     }
 
+    #pragma warning disable CA1859 // Use concrete types when possible for improved performance
     private static IConfig GetConfig(string[] args)
     {
+    #pragma warning restore CA1859
         #if DEBUG
         // Use in-process for debugging
         return new Config.DebugInProcessConfig();

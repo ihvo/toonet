@@ -1,8 +1,3 @@
-using System.Text;
-using System.Text.Json;
-using TooNet.Benchmarks.Data;
-using TooNet.Benchmarks.Utils;
-
 namespace TooNet.Benchmarks.Reporting;
 
 public class TokenReductionAnalyzer

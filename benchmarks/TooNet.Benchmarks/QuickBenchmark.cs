@@ -1,10 +1,4 @@
-using System;
-using System.Diagnostics;
-using Newtonsoft.Json;
-using TooNet;
-using TooNet.Benchmarks.Data;
-using TooNet.Benchmarks.Models;
-using TooNet.Benchmarks.Utils;
+namespace TooNet.Benchmarks;
 
 public static class QuickBenchmark
 {
@@ -33,7 +27,6 @@ public static class QuickBenchmark
         {
             _ = System.Text.Json.JsonSerializer.Serialize(data);
             _ = TooNetSerializer.Serialize(data);
-            _ = JsonConvert.SerializeObject(data);
         }
 
         // Test System.Text.Json
@@ -45,16 +38,6 @@ public static class QuickBenchmark
         }
         sw.Stop();
         var jsonTime = sw.Elapsed.TotalMilliseconds;
-
-        // Test Newtonsoft.Json
-        sw.Restart();
-        string newtonsoftResult = "";
-        for (int i = 0; i < iterations; i++)
-        {
-            newtonsoftResult = JsonConvert.SerializeObject(data);
-        }
-        sw.Stop();
-        var newtonsoftTime = sw.Elapsed.TotalMilliseconds;
 
         // Test TooNet
         sw.Restart();
@@ -72,7 +55,6 @@ public static class QuickBenchmark
         Console.WriteLine($"\n{name} ({iterations:N0} iterations):");
         Console.WriteLine(new string('-', 40));
         Console.WriteLine($"System.Text.Json:  {jsonTime,8:F2}ms | {jsonResult.Length,6} bytes");
-        Console.WriteLine($"Newtonsoft.Json:   {newtonsoftTime,8:F2}ms | {newtonsoftResult.Length,6} bytes");
         Console.WriteLine($"TooNet:            {toonTime,8:F2}ms | {toonResult.Length,6} bytes");
         Console.WriteLine($"Performance ratio: {toonTime/jsonTime:F2}x vs System.Text.Json");
         Console.WriteLine($"Token reduction:   {comparison.ReductionPercentage:F1}% ({comparison.TokensSaved} tokens saved)");

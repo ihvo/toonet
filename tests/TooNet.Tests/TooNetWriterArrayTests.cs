@@ -1,13 +1,9 @@
-using System.Text;
-using TooNet.Internal;
-using Xunit;
-
 namespace TooNet.Tests;
 
 public class TooNetWriterArrayTests
 {
     [Fact]
-    public void WriteArray_Empty_WritesCorrectFormat()
+    public void WriteArrayEmptyWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -22,7 +18,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_SingleString_WritesCorrectFormat()
+    public void WriteArraySingleStringWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -38,7 +34,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_MultipleStrings_WritesCorrectFormat()
+    public void WriteArrayMultipleStringsWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -56,7 +52,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_Numbers_WritesCorrectFormat()
+    public void WriteArrayNumbersWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -74,7 +70,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_Booleans_WritesCorrectFormat()
+    public void WriteArrayBooleansWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -91,7 +87,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_MixedTypes_WritesCorrectFormat()
+    public void WriteArrayMixedTypesWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -110,7 +106,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_TabDelimiter_WritesCorrectFormat()
+    public void WriteArrayTabDelimiterWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -128,7 +124,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_PipeDelimiter_WritesCorrectFormat()
+    public void WriteArrayPipeDelimiterWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -146,7 +142,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_QuotedStrings_WritesCorrectFormat()
+    public void WriteArrayQuotedStringsWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -164,7 +160,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_CountMismatch_TooFew_ThrowsException()
+    public void WriteArrayCountMismatchTooFewThrowsException()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -181,7 +177,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_CountMismatch_TooMany_ThrowsException()
+    public void WriteArrayCountMismatchTooManyThrowsException()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -198,7 +194,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_NegativeCount_ThrowsException()
+    public void WriteArrayNegativeCountThrowsException()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -209,7 +205,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_OutsideContext_ThrowsException()
+    public void WriteArrayOutsideContextThrowsException()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -224,7 +220,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_EmptyStrings_WritesCorrectFormat()
+    public void WriteArrayEmptyStringsWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -241,7 +237,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_NegativeNumbers_WritesCorrectFormat()
+    public void WriteArrayNegativeNumbersWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -259,7 +255,7 @@ public class TooNetWriterArrayTests
     }
 
     [Fact]
-    public void WriteArray_LargeCount_WritesCorrectFormat()
+    public void WriteArrayLargeCountWritesCorrectFormat()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();

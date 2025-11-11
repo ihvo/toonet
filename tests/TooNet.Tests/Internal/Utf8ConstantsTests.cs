@@ -1,13 +1,9 @@
-using System.Text;
-using TooNet.Internal;
-using Xunit;
-
 namespace TooNet.Tests.Internal;
 
 public class Utf8ConstantsTests
 {
     [Fact]
-    public void True_ReturnsCorrectBytes()
+    public void TrueReturnsCorrectBytes()
     {
         // Arrange
         var expected = "true"u8.ToArray();
@@ -20,7 +16,7 @@ public class Utf8ConstantsTests
     }
 
     [Fact]
-    public void False_ReturnsCorrectBytes()
+    public void FalseReturnsCorrectBytes()
     {
         // Arrange
         var expected = "false"u8.ToArray();
@@ -33,7 +29,7 @@ public class Utf8ConstantsTests
     }
 
     [Fact]
-    public void Null_ReturnsCorrectBytes()
+    public void NullReturnsCorrectBytes()
     {
         // Arrange
         var expected = "null"u8.ToArray();
@@ -61,7 +57,7 @@ public class Utf8ConstantsTests
     [InlineData(Utf8Constants.CloseBrace, '}')]
     [InlineData(Utf8Constants.Hyphen, '-')]
     [InlineData(Utf8Constants.Hash, '#')]
-    public void ByteConstants_HaveCorrectValues(byte actual, char expected)
+    public void ByteConstantsHaveCorrectValues(byte actual, char expected)
     {
         // Assert
         Assert.Equal((byte)expected, actual);
@@ -71,14 +67,14 @@ public class Utf8ConstantsTests
     [InlineData(Utf8Constants.LowerN, 'n')]
     [InlineData(Utf8Constants.LowerR, 'r')]
     [InlineData(Utf8Constants.LowerT, 't')]
-    public void EscapeCharacterBytes_HaveCorrectValues(byte actual, char expected)
+    public void EscapeCharacterBytesHaveCorrectValues(byte actual, char expected)
     {
         // Assert
         Assert.Equal((byte)expected, actual);
     }
 
     [Fact]
-    public void AllConstants_AreValidAscii()
+    public void AllConstantsAreValidAscii()
     {
         // Arrange
         byte[] allBytes =

@@ -1,7 +1,4 @@
-using System.Numerics;
-using System.Runtime.InteropServices;
-
-namespace TooNet.Internal;
+namespace TooNet;
 
 /// <summary>
 /// Provides quoting rules for TOON string serialization.

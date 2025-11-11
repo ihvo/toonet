@@ -1,6 +1,4 @@
-using Newtonsoft.Json;
-
-namespace TooNet.Benchmarks.Benchmarks;
+namespace TooNet.Benchmarks;
 
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net90)]
@@ -22,16 +20,10 @@ public class PrimitiveBenchmarks
     public string Int_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_intValue);
 
     [Benchmark]
-    public string Int_NewtonsoftJson() => JsonConvert.SerializeObject(_intValue);
-
-    [Benchmark]
     public string Int_TooNet() => TooNetSerializer.Serialize(_intValue);
 
     [Benchmark]
     public string Double_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_doubleValue);
-
-    [Benchmark]
-    public string Double_NewtonsoftJson() => JsonConvert.SerializeObject(_doubleValue);
 
     [Benchmark]
     public string Double_TooNet() => TooNetSerializer.Serialize(_doubleValue);
@@ -40,25 +32,16 @@ public class PrimitiveBenchmarks
     public string String_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_stringValue);
 
     [Benchmark]
-    public string String_NewtonsoftJson() => JsonConvert.SerializeObject(_stringValue);
-
-    [Benchmark]
     public string String_TooNet() => TooNetSerializer.Serialize(_stringValue);
 
     [Benchmark]
     public string Bool_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_boolValue);
 
     [Benchmark]
-    public string Bool_NewtonsoftJson() => JsonConvert.SerializeObject(_boolValue);
-
-    [Benchmark]
     public string Bool_TooNet() => TooNetSerializer.Serialize(_boolValue);
 
     [Benchmark]
     public string DateTime_SystemTextJson() => System.Text.Json.JsonSerializer.Serialize(_dateValue);
-
-    [Benchmark]
-    public string DateTime_NewtonsoftJson() => JsonConvert.SerializeObject(_dateValue);
 
     [Benchmark]
     public string DateTime_TooNet() => TooNetSerializer.Serialize(_dateValue);

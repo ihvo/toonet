@@ -1,13 +1,9 @@
-using System.Text;
-using TooNet.Internal;
-using Xunit;
-
 namespace TooNet.Tests;
 
 public class TooNetWriterTests
 {
     [Fact]
-    public void WriteNull_WritesNullKeyword()
+    public void WriteNullWritesNullKeyword()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -23,7 +19,7 @@ public class TooNetWriterTests
     [Theory]
     [InlineData(true, "true")]
     [InlineData(false, "false")]
-    public void WriteBoolean_WritesCorrectKeyword(bool value, string expected)
+    public void WriteBooleanWritesCorrectKeyword(bool value, string expected)
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -41,7 +37,7 @@ public class TooNetWriterTests
     [InlineData(42, "42")]
     [InlineData(-123, "-123")]
     [InlineData(9223372036854775807, "9223372036854775807")] // long.MaxValue
-    public void WriteNumber_Long_WritesDecimalForm(long value, string expected)
+    public void WriteNumberLongWritesDecimalForm(long value, string expected)
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -59,7 +55,7 @@ public class TooNetWriterTests
     [InlineData(3.14, "3.14")]
     [InlineData(-2.5, "-2.5")]
     [InlineData(1.23e10, "12300000000")]
-    public void WriteNumber_Double_WritesCorrectForm(double value, string expected)
+    public void WriteNumberDoubleWritesCorrectForm(double value, string expected)
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -76,7 +72,7 @@ public class TooNetWriterTests
     [InlineData(double.NaN, "null")]
     [InlineData(double.PositiveInfinity, "null")]
     [InlineData(double.NegativeInfinity, "null")]
-    public void WriteNumber_SpecialValues_WritesNull(double value, string expected)
+    public void WriteNumberSpecialValuesWritesNull(double value, string expected)
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -97,7 +93,7 @@ public class TooNetWriterTests
     [InlineData("true", "\"true\"")]
     [InlineData("42", "\"42\"")]
     [InlineData("null", "\"null\"")]
-    public void WriteString_AppliesQuotingRules(string value, string expected)
+    public void WriteStringAppliesQuotingRules(string value, string expected)
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -111,7 +107,7 @@ public class TooNetWriterTests
     }
 
     [Fact]
-    public void WriteString_EscapesSpecialCharacters()
+    public void WriteStringEscapesSpecialCharacters()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();
@@ -127,7 +123,7 @@ public class TooNetWriterTests
     }
 
     [Fact]
-    public void IndentationDepth_IncreasesAndDecreases()
+    public void IndentationDepthIncreasesAndDecreases()
     {
         // Arrange
         using var buffer = new PooledBufferWriter();

@@ -1,12 +1,9 @@
-using TooNet.Internal;
-using Xunit;
-
 namespace TooNet.Tests.Internal;
 
 public class IndentationCacheTests
 {
     [Fact]
-    public void GetIndentation_ZeroDepth_ReturnsEmpty()
+    public void GetIndentationZeroDepthReturnsEmpty()
     {
         // Act
         var indent = IndentationCache.GetIndentation(0);
@@ -22,7 +19,7 @@ public class IndentationCacheTests
     [InlineData(3, 6)]
     [InlineData(5, 10)]
     [InlineData(10, 20)]
-    public void GetIndentation_ValidDepth_ReturnsCorrectNumberOfSpaces(int depth, int expectedSpaces)
+    public void GetIndentationValidDepthReturnsCorrectNumberOfSpaces(int depth, int expectedSpaces)
     {
         // Act
         var indent = IndentationCache.GetIndentation(depth);
@@ -36,7 +33,7 @@ public class IndentationCacheTests
     }
 
     [Fact]
-    public void GetIndentation_MaxDepth_ReturnsCorrectSpaces()
+    public void GetIndentationMaxDepthReturnsCorrectSpaces()
     {
         // Arrange
         int maxDepth = IndentationCache.MaxSupportedDepth;
@@ -53,7 +50,7 @@ public class IndentationCacheTests
     }
 
     [Fact]
-    public void GetIndentation_ExceedsMaxDepth_ThrowsException()
+    public void GetIndentationExceedsMaxDepthThrowsException()
     {
         // Arrange
         int excessiveDepth = IndentationCache.MaxSupportedDepth + 1;
@@ -64,14 +61,14 @@ public class IndentationCacheTests
     }
 
     [Fact]
-    public void GetIndentation_NegativeDepth_ThrowsArgumentException()
+    public void GetIndentationNegativeDepthThrowsArgumentException()
     {
         // Act & Assert
         Assert.Throws<ArgumentOutOfRangeException>(() => IndentationCache.GetIndentation(-1));
     }
 
     [Fact]
-    public void GetIndentation_MultipleCalls_ReturnsSameSpan()
+    public void GetIndentationMultipleCallsReturnsSameSpan()
     {
         // Act
         var indent1 = IndentationCache.GetIndentation(5);
@@ -83,7 +80,7 @@ public class IndentationCacheTests
     }
 
     [Fact]
-    public void MaxSupportedDepth_IsPositive()
+    public void MaxSupportedDepthIsPositive()
     {
         // Assert
         Assert.True(IndentationCache.MaxSupportedDepth > 0);
@@ -91,7 +88,7 @@ public class IndentationCacheTests
     }
 
     [Fact]
-    public void SpacesPerIndentLevel_IsTwo()
+    public void SpacesPerIndentLevelIsTwo()
     {
         // Assert
         Assert.Equal(2, IndentationCache.SpacesPerIndentLevel);
@@ -102,7 +99,7 @@ public class IndentationCacheTests
     [InlineData(5)]
     [InlineData(15)]
     [InlineData(32)]
-    public void GetIndentation_ProducesValidUtf8(int depth)
+    public void GetIndentationProducesValidUtf8(int depth)
     {
         // Act
         var indent = IndentationCache.GetIndentation(depth);

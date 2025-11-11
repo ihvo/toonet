@@ -1,5 +1,3 @@
-using TooNet.Internal;
-
 namespace TooNet;
 
 public partial struct TooNetWriter

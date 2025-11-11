@@ -1,6 +1,4 @@
-using System.Buffers;
-
-namespace TooNet.Internal;
+namespace TooNet;
 
 /// <summary>
 /// A buffer writer that uses ArrayPool for efficient memory management.

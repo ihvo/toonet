@@ -1,11 +1,9 @@
-using Xunit;
-
 namespace TooNet.Tests;
 
 public class TooNetExceptionTests
 {
     [Fact]
-    public void Constructor_Default_CreatesException()
+    public void ConstructorDefaultCreatesException()
     {
         // Arrange & Act
         var exception = new TooNetException();
@@ -17,7 +15,7 @@ public class TooNetExceptionTests
     }
 
     [Fact]
-    public void Constructor_WithMessage_SetsMessage()
+    public void ConstructorWithMessageSetsMessage()
     {
         // Arrange
         const string message = "Test error message";
@@ -32,7 +30,7 @@ public class TooNetExceptionTests
     }
 
     [Fact]
-    public void Constructor_WithMessageAndInnerException_SetsBoth()
+    public void ConstructorWithMessageAndInnerExceptionSetsBoth()
     {
         // Arrange
         const string message = "Outer exception message";
@@ -48,7 +46,7 @@ public class TooNetExceptionTests
     }
 
     [Fact]
-    public void TooNetException_CanBeCaughtAsException()
+    public void TooNetExceptionCanBeCaughtAsException()
     {
         // Arrange
         Exception? caughtException = null;

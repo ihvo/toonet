@@ -48,7 +48,7 @@ public static class StringGenerator
             Street = $"{streetNumber} {Streets[Random.Next(Streets.Length)]}",
             City = Cities[Random.Next(Cities.Length)],
             State = States[Random.Next(States.Length)],
-            PostalCode = Random.Next(10000, 99999).ToString(),
+            PostalCode = Random.Next(10000, 99999).ToString(System.Globalization.CultureInfo.InvariantCulture),
             Country = Countries[Random.Next(Countries.Length)]
         };
     }

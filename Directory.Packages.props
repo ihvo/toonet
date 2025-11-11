@@ -1,0 +1,24 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Testing -->
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageVersion Include="xunit" Version="2.6.5" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.6" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.0" />
+
+    <!-- Benchmarking -->
+    <PackageVersion Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageVersion Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.14.0" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.10" />
+
+    <!-- TOON Libraries for Comparison -->
+    <PackageVersion Include="AIDotNet.Toon" Version="0.1.0" />
+    <PackageVersion Include="Toon.DotNet" Version="1.0.0" />
+    <PackageVersion Include="Toon.NET" Version="0.3.1" />
+    <PackageVersion Include="ToonSharp" Version="1.0.0" />
+  </ItemGroup>
+</Project>

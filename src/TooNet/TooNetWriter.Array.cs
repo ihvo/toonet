@@ -1,7 +1,3 @@
-using System.Buffers;
-using System.Buffers.Text;
-using TooNet.Internal;
-
 namespace TooNet;
 
 public partial struct TooNetWriter

@@ -1,6 +1,3 @@
-using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Validators;
 using BenchmarkDotNet.Toolchains.InProcess.Emit;

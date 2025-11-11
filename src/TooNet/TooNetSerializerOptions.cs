@@ -15,7 +15,7 @@ public sealed class TooNetSerializerOptions
     /// Gets or sets whether to include length markers in the output format (e.g., [#N] format).
     /// Default is false.
     /// </summary>
-    public bool IncludeLengthMarkers { get; set; } = false;
+    public bool IncludeLengthMarkers { get; set; }
 
     /// <summary>
     /// Gets or sets the array formatting mode.
@@ -51,7 +51,7 @@ public sealed class TooNetSerializerOptions
     /// Gets or sets whether to ignore null values during serialization.
     /// Default is false.
     /// </summary>
-    public bool IgnoreNullValues { get; set; } = false;
+    public bool IgnoreNullValues { get; set; }
 
     /// <summary>
     /// Gets or sets whether to serialize enums as their string names instead of numeric values.

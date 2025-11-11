@@ -1,11 +1,4 @@
-using System.Text;
-using System.Text.Json;
-using BenchmarkDotNet.Attributes;
-using Newtonsoft.Json;
-using TooNet.Benchmarks.Data;
-using TooNet.Benchmarks.Models;
-
-namespace TooNet.Benchmarks.Benchmarks;
+namespace TooNet.Benchmarks;
 
 [MemoryDiagnoser]
 [JsonExporter]
@@ -14,6 +7,10 @@ public class ComplexStructureBenchmarks
     private Order _simpleOrder = null!;
     private Order _complexOrder = null!;
     private Customer _customerWithOrders = null!;
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles
+    };
 
     [GlobalSetup]
     public void Setup()
@@ -41,20 +38,12 @@ public class ComplexStructureBenchmarks
         System.Text.Json.JsonSerializer.Serialize(_simpleOrder);
 
     [Benchmark]
-    public string SimpleOrder_NewtonsoftJson() =>
-        JsonConvert.SerializeObject(_simpleOrder);
-
-    [Benchmark]
     public string SimpleOrder_TooNet() =>
         TooNetSerializer.Serialize(_simpleOrder);
 
     [Benchmark]
     public byte[] SimpleOrder_SystemTextJson_Utf8() =>
         System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(_simpleOrder);
-
-    [Benchmark]
-    public byte[] SimpleOrder_NewtonsoftJson_Utf8() =>
-        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_simpleOrder));
 
     [Benchmark]
     public byte[] SimpleOrder_TooNet_Utf8() =>
@@ -65,10 +54,6 @@ public class ComplexStructureBenchmarks
         System.Text.Json.JsonSerializer.Serialize(_complexOrder);
 
     [Benchmark]
-    public string ComplexOrder_NewtonsoftJson() =>
-        JsonConvert.SerializeObject(_complexOrder);
-
-    [Benchmark]
     public string ComplexOrder_TooNet() =>
         TooNetSerializer.Serialize(_complexOrder);
 
@@ -77,31 +62,13 @@ public class ComplexStructureBenchmarks
         System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(_complexOrder);
 
     [Benchmark]
-    public byte[] ComplexOrder_NewtonsoftJson_Utf8() =>
-        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_complexOrder));
-
-    [Benchmark]
     public byte[] ComplexOrder_TooNet_Utf8() =>
         TooNetSerializer.SerializeToUtf8Bytes(_complexOrder);
 
     [Benchmark]
     public string CustomerWithOrders_SystemTextJson()
     {
-        var options = new JsonSerializerOptions
-        {
-            ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles
-        };
-        return System.Text.Json.JsonSerializer.Serialize(_customerWithOrders, options);
-    }
-
-    [Benchmark]
-    public string CustomerWithOrders_NewtonsoftJson()
-    {
-        var settings = new JsonSerializerSettings
-        {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        };
-        return JsonConvert.SerializeObject(_customerWithOrders, settings);
+        return System.Text.Json.JsonSerializer.Serialize(_customerWithOrders, JsonOptions);
     }
 
     [Benchmark]
@@ -111,21 +78,7 @@ public class ComplexStructureBenchmarks
     [Benchmark]
     public byte[] CustomerWithOrders_SystemTextJson_Utf8()
     {
-        var options = new JsonSerializerOptions
-        {
-            ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles
-        };
-        return System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(_customerWithOrders, options);
-    }
-
-    [Benchmark]
-    public byte[] CustomerWithOrders_NewtonsoftJson_Utf8()
-    {
-        var settings = new JsonSerializerSettings
-        {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        };
-        return Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(_customerWithOrders, settings));
+        return System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(_customerWithOrders, JsonOptions);
     }
 
     [Benchmark]
