@@ -35,6 +35,7 @@ bld/
 
 # Visual Studio Code
 .vscode/
+.DS_Store
 
 # Rider
 .idea/

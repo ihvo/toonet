@@ -8,21 +8,21 @@ public partial struct TooNetWriter
 
     public void WriteStartObject()
     {
-        _inObject = true;
-        _isFirstProperty = true;
+        inObject = true;
+        isFirstProperty = true;
     }
 
     public void WriteEndObject()
     {
-        _inObject = false;
+        inObject = false;
     }
 
     public void WritePropertyName(ReadOnlySpan<char> name)
     {
-        if (!_inObject)
+        if (!inObject)
             throw new TooNetException("WritePropertyName called outside object context");
 
-        if (!_isFirstProperty)
+        if (!isFirstProperty)
         {
             WriteNewLine();
         }
@@ -41,7 +41,32 @@ public partial struct TooNetWriter
 
         WriteByte(Utf8Constants.Colon);
 
-        _isFirstProperty = false;
+        isFirstProperty = false;
+    }
+
+    public void WritePropertyNameWithoutColon(ReadOnlySpan<char> name)
+    {
+        if (!inObject)
+            throw new TooNetException("WritePropertyNameWithoutColon called outside object context");
+
+        if (!isFirstProperty)
+        {
+            WriteNewLine();
+        }
+
+        WriteIndentIfNeeded();
+
+        bool needsQuoting = QuotingRules.RequiresQuotingForKey(name);
+        if (needsQuoting)
+        {
+            WriteQuotedString(name);
+        }
+        else
+        {
+            WriteUnquotedString(name);
+        }
+
+        isFirstProperty = false;
     }
 
     public void WritePropertyValue(ReadOnlySpan<char> value)
@@ -78,7 +103,7 @@ public partial struct TooNetWriter
     {
         WriteNewLine();
         IncreaseDepth();
-        _isFirstProperty = true;
+        isFirstProperty = true;
     }
 
     public void EndNestedObject()

@@ -8,56 +8,46 @@ namespace TooNet;
 /// <summary>
 /// A high-performance writer for serializing data in TOON format.
 /// </summary>
-public partial struct TooNetWriter
+public partial struct TooNetWriter(IBufferWriter<byte> output, Delimiter delimiter = Delimiter.Comma)
 {
-    private readonly IBufferWriter<byte> _output;
-    private readonly Delimiter _delimiter;
-    private int _depth;
-    private bool _needsIndent;
-    private bool _isFirstProperty;
-    private bool _inObject;
-    private bool _inArray;
-    private int _arrayItemCount;
-    private int _arrayItemsWritten;
-    private ArrayFormatMode _currentArrayFormat;
-
-    public TooNetWriter(IBufferWriter<byte> output, Delimiter delimiter = Delimiter.Comma)
-    {
-        _output = output ?? throw new ArgumentNullException(nameof(output));
-        _delimiter = delimiter;
-        _depth = 0;
-        _needsIndent = false;
-        _isFirstProperty = false;
-        _inObject = false;
-    }
+    private readonly IBufferWriter<byte> output = output ?? throw new ArgumentNullException(nameof(output));
+    private readonly Delimiter delimiter = delimiter;
+    private int depth = 0;
+    private bool needsIndent = false;
+    private bool isFirstProperty = false;
+    private bool inObject = false;
+    private bool inArray;
+    private int arrayItemCount;
+    private int arrayItemsWritten;
+    private ArrayFormatMode currentArrayFormat;
 
     /// <summary>
     /// Gets the current indentation depth.
     /// </summary>
-    public int CurrentDepth => _depth;
+    public readonly int CurrentDepth => depth;
 
     /// <summary>
     /// Gets the delimiter being used.
     /// </summary>
-    public Delimiter Delimiter => _delimiter;
+    public readonly Delimiter Delimiter => delimiter;
 
     #region Primitive Writers
 
     public void WriteNull()
     {
         WriteIndentIfNeeded();
-        var span = _output.GetSpan(4);
+        var span = output.GetSpan(4);
         Utf8Constants.Null.CopyTo(span);
-        _output.Advance(4);
+        output.Advance(4);
     }
 
     public void WriteBoolean(bool value)
     {
         WriteIndentIfNeeded();
         var bytes = value ? Utf8Constants.True : Utf8Constants.False;
-        var span = _output.GetSpan(bytes.Length);
+        var span = output.GetSpan(bytes.Length);
         bytes.CopyTo(span);
-        _output.Advance(bytes.Length);
+        output.Advance(bytes.Length);
     }
 
     public void WriteNumber(long value)
@@ -68,9 +58,9 @@ public partial struct TooNetWriter
         if (!success)
             throw new TooNetException("Failed to format number");
 
-        var span = _output.GetSpan(written);
+        var span = output.GetSpan(written);
         buffer[..written].CopyTo(span);
-        _output.Advance(written);
+        output.Advance(written);
     }
 
     public void WriteNumber(double value)
@@ -95,16 +85,16 @@ public partial struct TooNetWriter
         if (!success)
             throw new TooNetException("Failed to format number");
 
-        var span = _output.GetSpan(written);
+        var span = output.GetSpan(written);
         buffer[..written].CopyTo(span);
-        _output.Advance(written);
+        output.Advance(written);
     }
 
     public void WriteString(ReadOnlySpan<char> value)
     {
         WriteIndentIfNeeded();
 
-        bool needsQuoting = QuotingRules.RequiresQuoting(value, _delimiter);
+        bool needsQuoting = QuotingRules.RequiresQuoting(value, delimiter);
 
         if (needsQuoting)
         {
@@ -122,21 +112,21 @@ public partial struct TooNetWriter
 
     public void WriteRaw(ReadOnlySpan<byte> value)
     {
-        var span = _output.GetSpan(value.Length);
+        var span = output.GetSpan(value.Length);
         value.CopyTo(span);
-        _output.Advance(value.Length);
+        output.Advance(value.Length);
     }
 
     public void WriteNewLine()
     {
         WriteByte(Utf8Constants.Newline);
-        _needsIndent = true;
+        needsIndent = true;
     }
 
     public void IncreaseDepth()
     {
-        _depth++;
-        if (_depth > IndentationCache.MaxSupportedDepth)
+        depth++;
+        if (depth > IndentationCache.MaxSupportedDepth)
         {
             throw new TooNetException($"Maximum depth {IndentationCache.MaxSupportedDepth} exceeded");
         }
@@ -144,8 +134,8 @@ public partial struct TooNetWriter
 
     public void DecreaseDepth()
     {
-        if (_depth > 0)
-            _depth--;
+        if (depth > 0)
+            depth--;
     }
 
     #endregion
@@ -154,15 +144,15 @@ public partial struct TooNetWriter
 
     private void WriteIndentIfNeeded()
     {
-        if (_needsIndent && _depth > 0)
+        if (needsIndent && depth > 0)
         {
-            var indent = IndentationCache.GetIndentation(_depth);
+            var indent = IndentationCache.GetIndentation(depth);
             WriteRaw(indent);
-            _needsIndent = false;
+            needsIndent = false;
         }
-        else if (_needsIndent)
+        else if (needsIndent)
         {
-            _needsIndent = false;
+            needsIndent = false;
         }
     }
 
@@ -205,25 +195,25 @@ public partial struct TooNetWriter
     private void WriteUnquotedString(ReadOnlySpan<char> value)
     {
         int byteCount = Encoding.UTF8.GetByteCount(value);
-        var span = _output.GetSpan(byteCount);
+        var span = output.GetSpan(byteCount);
         Encoding.UTF8.GetBytes(value, span);
-        _output.Advance(byteCount);
+        output.Advance(byteCount);
     }
 
     private void WriteChar(char c)
     {
         Span<byte> buffer = stackalloc byte[4]; // Max UTF-8 bytes per char
         int written = Encoding.UTF8.GetBytes(stackalloc char[] { c }, buffer);
-        var span = _output.GetSpan(written);
+        var span = output.GetSpan(written);
         buffer[..written].CopyTo(span);
-        _output.Advance(written);
+        output.Advance(written);
     }
 
     private void WriteByte(byte value)
     {
-        var span = _output.GetSpan(1);
+        var span = output.GetSpan(1);
         span[0] = value;
-        _output.Advance(1);
+        output.Advance(1);
     }
 
     #endregion

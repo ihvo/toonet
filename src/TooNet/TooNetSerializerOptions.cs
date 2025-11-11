@@ -59,11 +59,10 @@ public sealed class TooNetSerializerOptions
     /// </summary>
     public bool WriteEnumsAsStrings { get; set; } = true;
 
-    private static TooNetSerializerOptions? s_defaultOptions;
+    private static TooNetSerializerOptions? defaultOptions;
 
     /// <summary>
     /// Gets the default singleton instance of <see cref="TooNetSerializerOptions"/>.
     /// </summary>
-    public static TooNetSerializerOptions Default =>
-        s_defaultOptions ??= new TooNetSerializerOptions();
+    public static TooNetSerializerOptions Default => defaultOptions ??= new TooNetSerializerOptions();
 }

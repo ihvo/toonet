@@ -201,8 +201,7 @@ public class TooNetSerializerTests
         var result = TooNetSerializer.Serialize(obj);
 
         Assert.Contains("Name: Test", result);
-        Assert.Contains("Numbers:", result);
-        Assert.Contains("  [3]: 1,2,3", result);
+        Assert.Contains("Numbers[3]: 1,2,3", result);  // Array format is propertyName[count]: values
     }
 
     [Fact]
